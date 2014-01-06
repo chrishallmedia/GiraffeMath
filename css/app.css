@@ -1,0 +1,225 @@
+   @font-face {
+   	font-family: 'proxima_nova_rgregular';
+   	src: url('../font/proximanova-regular-webfont.eot');
+   	src: url('../font/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+   	url('../font/proximanova-regular-webfont.woff') format('woff'),
+   	url('../font/proximanova-regular-webfont.ttf') format('truetype'),
+   	url('../font/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+   	font-weight: normal;
+   	font-style: normal;
+
+   }
+   @font-face {
+   	font-family: 'novecento_widedemibold';
+   	src: url('../font/novecentowide-demibold-webfont.eot');
+   	src: url('../font/novecentowide-demibold-webfont.eot?#iefix') format('embedded-opentype'),
+   	url('../font/novecentowide-demibold-webfont.woff') format('woff'),
+   	url('../font/novecentowide-demibold-webfont.ttf') format('truetype'),
+   	url('../font/novecentowide-demibold-webfont.svg#novecento_widedemibold') format('svg');
+   	font-weight: normal;
+   	font-style: normal;
+
+   }
+
+   @font-face {
+   	font-family: 'novecento_widelight';
+   	src: url('../font/novecentowide-light-webfont.eot');
+   	src: url('../font/novecentowide-light-webfont.eot?#iefix') format('embedded-opentype'),
+   	url('../font/novecentowide-light-webfont.woff') format('woff'),
+   	url('../font/novecentowide-light-webfont.ttf') format('truetype'),
+   	url('../font/novecentowide-light-webfont.svg#novecento_widelight') format('svg');
+   	font-weight: normal;
+   	font-style: normal;
+
+   } 
+
+
+
+   body {
+   	padding-top: 50px!important;
+   	font-family: 'proxima_nova_rgregular',helvetica,sans-serif;
+   	color:#324e55;
+   }
+   .starter-template {
+   	padding: 40px 15px;
+   	text-align: center;
+   }
+   .answerBtn{
+   	width: 50px;
+   	text-align: center;
+   	font-family: 'novecento_widelight',helvetica,sans-serif;
+   	font-size:20px;
+   	color:#324e55!important;
+   }
+   .logo {
+   	font-size: 28px;
+   	padding:22px 0 35px 0;
+   }
+   .logothin{
+   	font-family: 'novecento_widelight',helvetica,sans-serif;
+
+   }
+   .logothick{
+   	font-family: 'novecento_widedemibold',helvetica,sans-serif;
+   	
+   }
+   #myTab, #ddlSkillLevel, #countdown {
+   	display: none;
+   }
+   .btn-group-vertical>.btn, .btn-group-vertical>.btn-group {
+   	padding: 15px;
+   	font-family: 'novecento_widelight';
+   	color: #324e55;
+   }
+   .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+   	/*background-image: none;*/
+   	background: rgba(92,145,158,.7);
+   	color: #fff!important;
+   	font-family: 'novecento_widedemibold'!important;
+   }
+
+   #mainView {
+   	/* fallback */
+   	background-color: #96c7b5;
+   	/*background-image: url(images/radial_bg.png);*/
+   	background-position: center center;
+   	background-repeat: no-repeat;
+
+   	/* Safari 4-5, Chrome 1-9 */
+   	/* Can't specify a percentage size? Laaaaaame. */
+   	background: -webkit-gradient(radial, center center, 0, center center, 460, from(#f6eda3), to(#96c7b5));
+
+   	/* Safari 5.1+, Chrome 10+ */
+   	background: -webkit-radial-gradient(circle, #f6eda3, #96c7b5);
+
+   	/* Firefox 3.6+ */
+   	background: -moz-radial-gradient(circle, #f6eda3, #96c7b5);
+
+   	/* IE 10 */
+   	background: -ms-radial-gradient(circle, #f6eda3, #96c7b5);
+
+   	/* Opera couldn't do radial gradients, then at some point they started supporting the -webkit- syntax, how it kinda does but it's kinda broken (doesn't do sizing) */
+
+   	padding: 0;
+   	height:480px!important;
+   	width:320px!important;
+   /*	height:100%;
+   	width:100%;*/
+   	position:absolute;
+   	overflow:hidden;
+   	left:0;
+   	top:0;
+
+   }
+   #resultsList {
+   	font-size: 25px;
+   	padding: 155px 0 15px 0;
+   }
+   #aDiv {
+   	text-align: center;
+   	padding:15px 0;
+   }
+
+   #panes {
+   	position:absolute;
+   	bottom:0;
+   	width:100%;
+   	height:100%;
+   }
+
+   #QuestionHolder {
+   	position: absolute;
+   	bottom: 0;
+   	text-align: center;
+   	width: 100%;
+   	background: #f3f1e0;
+   }
+   #startScreen {
+   	padding: 15px;
+   	text-align: center;
+   }
+   #startTest {
+   	margin-top: 74px;
+   }
+   #startTestAgain{
+
+   }
+   .btn-lg {
+   	margin: 10px;
+   	padding: 14px 0;
+   	font-size: 16px;
+   }
+   #qDiv {
+   	background: #373d3f;
+   	padding: 14px 0;
+   	color: #fff;
+   	font-weight: bold;
+   	font-size: 16px;
+   }
+   #wrong {
+   	background: red;
+   	padding: 14px 0;
+   	color: #fff;
+   	font-weight: bold;
+   	font-size: 16px;
+   	text-align: center;
+      position:absolute;
+      bottom:100px;
+      right:0px;
+      z-index: 10;
+      width:100%;
+   }
+   #thesun {
+   	position:absolute;
+   	top:-50px;
+   	left:90px;
+   }
+   #mama {
+   	position:absolute;
+   	bottom:150px;
+   	left:-50px;
+   	z-index: 999;
+   }
+   #baby {
+   	position:absolute;
+   	bottom:150px;
+   	right:-50px;
+   	z-index: 1099;
+   }
+   #hills {
+   	position:absolute;
+   	bottom:150px;
+   	right:0px;
+   	z-index: 10;
+   }
+   #landing, #results {
+   	text-align: center;
+   	padding: 15px;
+   	margin: 0;
+   }
+   #landing > p {
+   	padding:35px 0 20px 0;
+   }
+   .btn-primary {
+   	color: #fff;
+   	background-color: #668f7c;
+   	border-color: #668f7c;
+   	width: 100%;
+   	margin: 0;
+   	border-radius: 0;
+
+   }
+   .btn-group, .btn-group-vertical {
+   	width: 100%;
+   	padding: 0;
+   }
+   .btn-default {
+   	color: #333;
+   	background-color: rgba(255, 255, 2555, 0.3);
+   	border: 1px dashed #648978;
+   }
+   .btn-primary {
+   	font-family: 'novecento_widedemibold';
+   }
+
+   
