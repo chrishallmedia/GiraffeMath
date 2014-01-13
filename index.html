@@ -1,42 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Page Title</title>
+	<title>GiraffeMath</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.0.min.css" />
 	<link rel="stylesheet" href="css/app.css" />
-	<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery.mobile-1.4.0.min.js"></script>
-	<script src="js/jquery.timer.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.easing.compatibility.js "></script>
-	<script src="js/app.js"></script>
+	
 </head>
 <body>
-	<!-- Start of first page -->
-	<div data-role="page" id="foo">
+	<!-- Splash Page -->
+	<div data-role="page" id="splash-page">
 
 		<div role="main" class="ui-content">
 			<div class="logo"><span class="logothin">Giraffe</span><span class="logothick">Math</span></div>
-			<p>I'm first in the source order so I'm shown as the page.</p>
-			<p>View internal page called </p>
-			<a href="#bar" data-role="button">Link button</a>
-
+			<img id="landingPic" src="img/landing.png"/>
+			<p>Answer questions correctly to get the baby giraffe home before sunset!</p>
+			<a href="#options-page" class="btn-cta" data-role="button">Play</a>
 		</div><!-- /content -->
 
 	</div><!-- /page -->
 
-	<!-- Start of second page -->
-	<div data-role="page" id="bar">
+	<!-- Options Page -->
+	<div data-role="page" id="options-page">
 
 		<div role="main" class="ui-content">
-			<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
-			<p><a href="#foo">Back to foo</a></p>
+			<div class="logo"><span class="logothin">Giraffe</span><span class="logothick">Math</span></div>
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup">
+					<input type="radio" name="MathOperators" id="optAddition" value="Addition" checked="checked" />
+					<label for="optAddition">Addition</label>
+
+					<input type="radio" name="MathOperators" id="optSubtraction" value="Subtraction"  />
+					<label for="optSubtraction">Subtraction</label>
+
+					<input type="radio" name="MathOperators" id="optMultiplication" value="Multiplication"  />
+					<label for="optMultiplication">Multiplication</label>
+
+					<input type="radio" name="MathOperators" id="optDivision" value="Division"  />
+					<label for="optDivision">Division</label>
+				</fieldset>
+			</div>
+
+            <div data-role="fieldcontain" id="hardness">
+				<select name="select-choice-1" id="ddlSkillLevel">
+					<option value="1">Easy</option>
+                	<option value="2">Challenging</option>
+				</select>
+			</div>
+        
+			<a href="#game-page" class="btn-cta" data-role="button" id="startTest">Start</a>
 		</div><!-- /content -->
 
 	</div><!-- /page -->
+
+	<!-- Game Page -->
+	<div data-role="page" id="game-page">
+
+		<div role="main" class="ui-content">
+		<img id="thesun" src="img/sun.png"/>
+        <img id="mama" src="img/mom.png"/>
+        <img id="baby" src="img/baby.png"/>
+        <img id="hills" src="img/hills.png"/>
+        <span id="countdown"></span>    
+        <div id="QuestionHolder"></div>
+        <div id="wrong">Nope!</div>
+			
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	<!-- Results Page -->
+	<div data-role="page" id="results-page">
+
+		<div role="main" class="ui-content">
+			 <div id="resultsList"></div>
+			 <a href="#options-page" data-role="button" id="startTestAgain">Start Again!</a>
+			
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.0.min.js"></script>
+	<script src="js/jquery.timer.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.easing.compatibility.js "></script>
+	<script src="js/app.js"></script>
 
 </body>
 </html>
