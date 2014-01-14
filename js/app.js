@@ -1,7 +1,7 @@
 // Array of correct answers
 var tally = [];
 // How long the sun takes to set
-var duration = 30000;
+var duration = 330000;
 $("#wrong").hide();
 
 
@@ -80,14 +80,17 @@ function CreateNewTest()
           var submittedAnswer = $(this).attr("value");
           var answer = "";
           if (submittedAnswer == qQuestion.GetAnswer()) {
+            var moveamount = $( window ).width() / 6;
             $( "#baby" ).animate({ 
-                right: "+=45px",
+                right: "+=" + moveamount,
             }, 1000 );
            //$( "#AnswerHolder" ).html("<div class=\"alert alert-success\">Good job Einstein!</div>");
            // $( "#qDiv" ).addClass("alert alert-success");
            answer = "correct"; 
            window.tally.push("correct")
            if (window.tally.length >= 5) { ShowResults("You Won!"); } else { CreateNewTest(); }
+          
+
        } else {
 
             //$( "#AnswerHolder" ).html("<div class=\"alert alert-danger\">Wrong. Dead wrong.</div>");
