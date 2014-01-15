@@ -4,6 +4,8 @@ var tally = [];
 var duration = 330000;
 $("#wrong").hide();
 
+var numReqCorrQues = 5;
+
 
 function CQuestion(sV1, sV2, sOperand)
 {
@@ -71,8 +73,6 @@ function CreateNewTest()
             garrQuestions.push(qQuestion);
         }
         
-
-
         QuestionHolder.innerHTML = sQHtml;
         
 
@@ -80,44 +80,40 @@ function CreateNewTest()
           var submittedAnswer = $(this).attr("value");
           var answer = "";
           if (submittedAnswer == qQuestion.GetAnswer()) {
-            var moveamount = $( window ).width() / 6;
-            $( "#baby" ).animate({ 
-                right: "+=" + moveamount,
-            }, 1000 );
-           //$( "#AnswerHolder" ).html("<div class=\"alert alert-success\">Good job Einstein!</div>");
-           // $( "#qDiv" ).addClass("alert alert-success");
-           answer = "correct"; 
-           window.tally.push("correct")
-           if (window.tally.length >= 5) { ShowResults("You Won!"); } else { CreateNewTest(); }
-          
+            var winlength = $( window ).width();
+            var mompos = $( "#mama" ).offset();
+            var goal = mompos.left + 200;
+            var totallength = winlength - goal;
+            var moveamount = totallength / numReqCorrQues;
+            answer = "correct"; 
+            window.tally.push("correct");
+            
+
+            $( "#baby" ).animate({ right: "+=" + moveamount }, 1000, function () {
+                    if (window.tally.length >= numReqCorrQues) { ShowResults("You Won!");
+                } else { CreateNewTest(); }
+            });
 
        } else {
-
-            //$( "#AnswerHolder" ).html("<div class=\"alert alert-danger\">Wrong. Dead wrong.</div>");
-            //$( "#qDiv" ).addClass("alert alert-danger");
             answer = "incorrect";
             $("#wrong").show().animate({opacity: 1.0}, 800).fadeOut(200, function() {
-    // Animation complete.
-    CreateNewTest();
-  });
+                // Animation complete.
+                CreateNewTest();
+            });
         };
-        //window.tally.push(answer);
-        //console.log(window.tally);
+    });
+}
 
-        //if (window.tally.length >= 5) { ShowResults("You Won!"); } else { CreateNewTest(); }
-});
-    }
-
-    function ShowResults(cause){
-        GameTimer.resetCountdown();
-        $("#thesun").stop(true,true).css("top","-50px");
-        $("#baby").stop(true,true).css("right","-50px");
-        $.mobile.changePage( "#results-page", {
-          transition: "pop",
-          reverse: false,
-          changeHash: false
-        });
-        $( "#resultsList" ).html("<span class=\"logothin\">"+ cause +"</span>");
+function ShowResults(cause){
+    GameTimer.resetCountdown();
+    $("#thesun").stop(true,true).css("top","-50px");
+    $("#baby").stop(true,true).css("right","-50px");
+    $.mobile.changePage( "#results-page", {
+      transition: "pop",
+      reverse: false,
+      changeHash: false
+  });
+    $( "#resultsList" ).html("<span class=\"logothin\">"+ cause +"</span>");
         //$( "#AnswerHolder" ).html("");
         console.log($("#thesun").position())
     }
@@ -218,10 +214,10 @@ function CreateNewTest()
       event.preventDefault(); 
       // $('#myTab a[href="#quiz"]').tab('show');
       $.mobile.changePage( "#game-page", {
-  transition: "pop",
-  reverse: false,
-  changeHash: false
-});
+          transition: "pop",
+          reverse: false,
+          changeHash: false
+      });
       window.tally = [];
       CreateNewTest();
   });
@@ -229,10 +225,10 @@ function CreateNewTest()
       event.preventDefault(); 
       // $('#myTab a[href="#startScreen"]').tab('show');
       $.mobile.changePage( "#options-page", {
-  transition: "pop",
-  reverse: false,
-  changeHash: false
-});
+          transition: "pop",
+          reverse: false,
+          changeHash: false
+      });
   });
 
     
