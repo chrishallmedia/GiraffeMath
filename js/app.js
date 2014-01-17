@@ -1,8 +1,8 @@
 // Array of correct answers
 var tally = [];
 // How long the sun takes to set
-var duration = 330000;
-$("#wrong").hide();
+var duration = 30000;
+$("#wrong,#right").hide();
 
 var numReqCorrQues = 5;
 
@@ -35,8 +35,11 @@ var SkillLevel = {
 function CreateNewTest()
 {
 
-    $("#thesun").animate({ top: "+=320px",
-}, window.duration );
+    $("#thesun").animate({ top: "+=320px" }, window.duration );
+
+     $("#night").animate({ opacity: .4
+     }, window.duration );
+
 
     var optAddition = document.getElementById("optAddition");
     var optSubtraction = document.getElementById("optSubtraction");
@@ -79,22 +82,40 @@ function CreateNewTest()
         var result = $('.answerBtn').on('click', function(event) {
           var submittedAnswer = $(this).attr("value");
           var answer = "";
-          if (submittedAnswer == qQuestion.GetAnswer()) {
+          if (submittedAnswer == qQuestion.GetAnswer()) {  // if the answer is right
             var winlength = $( window ).width();
             var mompos = $( "#mama" ).offset();
-            var goal = mompos.left + 200;
+            var goal = 170;
             var totallength = winlength - goal;
             var moveamount = totallength / numReqCorrQues;
             answer = "correct"; 
             window.tally.push("correct");
             
+            $( "#hills" ).animate({ right: "-=" + moveamount/2 }, 700, "linear");
 
-            $( "#baby" ).animate({ right: "+=" + moveamount }, 1000, function () {
-                    if (window.tally.length >= numReqCorrQues) { ShowResults("You Won!");
-                } else { CreateNewTest(); }
+            $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
+
+            if (window.tally.length >= numReqCorrQues) { 
+                $( "#mama" ).animate({ left: "+=" + 120 }, 2000, "linear", function () {
+                    setTimeout(function() { ShowResults("You Won!"); },3000);
+                });
+            };
+
+           $("#right").show().animate({opacity: 1.0}, 800).fadeOut(200, function() {
+                // Animation complete.
+                CreateNewTest();
             });
 
-       } else {
+
+            // $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear", function () {
+            //         if (window.tally.length >= numReqCorrQues) { 
+            //             $( "#mama" ).animate({ right: "+=" + 150 }, 1000, "linear", function () {ShowResults("You Won!")});
+                        
+            //     } else { CreateNewTest(); }
+            // });
+
+      
+       } else { // if the answer is wrong
             answer = "incorrect";
             $("#wrong").show().animate({opacity: 1.0}, 800).fadeOut(200, function() {
                 // Animation complete.
@@ -106,16 +127,20 @@ function CreateNewTest()
 
 function ShowResults(cause){
     GameTimer.resetCountdown();
-    $("#thesun").stop(true,true).css("top","-50px");
-    $("#baby").stop(true,true).css("right","-50px");
+    
     $.mobile.changePage( "#results-page", {
-      transition: "pop",
+      transition: "none",
       reverse: false,
       changeHash: false
   });
+    $("#thesun").stop(true,true).css("top","-50px");
+    $("#baby").stop(true,true).css("right","20px");
+    $("#hills").stop(true,true).css("right","0");
+    $("#mama").stop(true,true).css("left","-200px");
     $( "#resultsList" ).html("<span class=\"logothin\">"+ cause +"</span>");
+    $("#night").css("opacity","0");
         //$( "#AnswerHolder" ).html("");
-        console.log($("#thesun").position())
+        //console.log($("#thesun").position());
     }
 
     function CreateAndSortAnswers(answer) {
@@ -214,7 +239,7 @@ function ShowResults(cause){
       event.preventDefault(); 
       // $('#myTab a[href="#quiz"]').tab('show');
       $.mobile.changePage( "#game-page", {
-          transition: "pop",
+          transition: "flip",
           reverse: false,
           changeHash: false
       });
@@ -225,7 +250,7 @@ function ShowResults(cause){
       event.preventDefault(); 
       // $('#myTab a[href="#startScreen"]').tab('show');
       $.mobile.changePage( "#options-page", {
-          transition: "pop",
+          transition: "flip",
           reverse: false,
           changeHash: false
       });
