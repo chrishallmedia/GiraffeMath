@@ -37,8 +37,8 @@ function CreateNewTest()
 
     $("#thesun").animate({ top: "+=320px" }, window.duration );
 
-     $("#night").animate({ opacity: .4
-     }, window.duration );
+    // $("#night").animate({ opacity: .4
+    // }, window.duration );
 
 
     var optAddition = document.getElementById("optAddition");
@@ -91,38 +91,56 @@ function CreateNewTest()
             answer = "correct"; 
             window.tally.push("correct");
             
-            $( "#hills" ).animate({ right: "-=" + moveamount/2 }, 700, "linear");
 
-            $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
 
-            if (window.tally.length >= numReqCorrQues) { 
+            if (window.tally.length >= numReqCorrQues) { // if enough right
+
+                $( "#hills" ).animate({ right: "-=" + moveamount/2 }, 700, "linear");
+               $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
+               $('#aDiv *').prop('disabled', true);
+
                 $( "#mama" ).animate({ left: "+=" + 120 }, 2000, "linear", function () {
-                    setTimeout(function() { ShowResults("You Won!"); },3000);
+                    setTimeout(function() { 
+                        ShowResults("You Won!"); 
+                        $('#aDiv *').prop('disabled', false);
+                    },3000);
                 });
-            };
 
-           $("#right").show().animate({opacity: 1.0}, 800).hide(0, function() {
+
+
+            } else { // if enough right not met
+
+               $( "#hills" ).animate({ right: "-=" + moveamount/2 }, 700, "linear");
+               $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
+               $('#aDiv *').prop('disabled', true);
+
+               $("#right").show().animate({opacity: 1.0}, 800).hide(0, function() {
                 // Animation complete.
+                $('#aDiv *').prop('disabled', false);
                 CreateNewTest();
             });
+           }
+
+           
 
 
             // $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear", function () {
             //         if (window.tally.length >= numReqCorrQues) { 
             //             $( "#mama" ).animate({ right: "+=" + 150 }, 1000, "linear", function () {ShowResults("You Won!")});
-                        
+
             //     } else { CreateNewTest(); }
             // });
 
-      
+
        } else { // if the answer is wrong
-            answer = "incorrect";
-            $("#wrong").show().animate({opacity: 1.0}, 800).hide(0, function() {
+        answer = "incorrect";
+        $("#wrong").show().animate({opacity: 1.0}, 800).hide(0, function() {
                 // Animation complete.
+                $('#aDiv *').prop('disabled', false);
                 CreateNewTest();
             });
-        };
-    });
+    };
+});
 }
 
 function ShowResults(cause){
@@ -138,7 +156,7 @@ function ShowResults(cause){
     $("#hills").stop(true,true).css("right","0");
     $("#mama").stop(true,true).css("left","-200px");
     $( "#resultsList" ).html("<span class=\"logothin\">"+ cause +"</span>");
-    $("#night").css("opacity","0");
+    // $("#night").css("opacity","0");
         //$( "#AnswerHolder" ).html("");
         //console.log($("#thesun").position());
     }

@@ -87,7 +87,8 @@ border-bottom: none;
    border:none!important;
    color:#fff!important;
    border-radius: none!important;
-   padding:20px;
+   padding:15px;
+   font-size:20px!important;
 }
 .logo {
    font-size: 28px;
