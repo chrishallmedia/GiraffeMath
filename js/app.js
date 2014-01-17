@@ -101,7 +101,7 @@ function CreateNewTest()
                 });
             };
 
-           $("#right").show().animate({opacity: 1.0}, 800).fadeOut(200, function() {
+           $("#right").show().animate({opacity: 1.0}, 800).hide(0, function() {
                 // Animation complete.
                 CreateNewTest();
             });
@@ -117,7 +117,7 @@ function CreateNewTest()
       
        } else { // if the answer is wrong
             answer = "incorrect";
-            $("#wrong").show().animate({opacity: 1.0}, 800).fadeOut(200, function() {
+            $("#wrong").show().animate({opacity: 1.0}, 800).hide(0, function() {
                 // Animation complete.
                 CreateNewTest();
             });
