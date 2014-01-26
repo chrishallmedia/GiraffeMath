@@ -1,11 +1,22 @@
 // Array of correct answers
 var tally = [];
+
+var level = 1;
 // How long the sun takes to set
 var duration = 30000;
+
+var animal=["giraffe","monkey","snake","elephant"];
+
+var currentanimal = 0;
+
 $("#wrong,#right").hide();
+
+$("#mama").attr("src","img/mom-giraffe.png");
+$("#baby").attr("src","img/baby-giraffe.png");
 
 var numReqCorrQues = 5;
 
+$( "#levelInfo" ).html("<p>Level " + window.level + "</p>");
 
 function CQuestion(sV1, sV2, sOperand)
 {
@@ -31,36 +42,73 @@ var SkillLevel = {
     Challenging : 2
 };
 
+function newLevel() {
+
+    window.duration = 30000 - window.level*300;
+    var newAnimal; 
+
+    if (window.currentanimal < 3) {
+        newAnimal = window.currentanimal + 1;
+    } else {
+        newAnimal = 0;
+    }
+
+    window.currentanimal = newAnimal;
+
+    // if (window.level%2) {}
+    $("#mama").attr("src","img/mom-"+window.animal[newAnimal]+".png");
+    $("#baby").attr("src","img/baby-"+window.animal[newAnimal]+".png");
+
+}
+
+// function getNextAnimal(curr){
+
+//     var newItem;
+//     if (curr > 3) {
+//         newItem = curr + 1;
+//     } else {
+//         newItem = 0;
+//     }
+//     window.currentanimal = newItem;
+//     return newItem;
+// }
 
 function CreateNewTest()
 {
 
-    $("#thesun").animate({ top: "+=320px" }, window.duration );
 
-    // $("#night").animate({ opacity: .4
-    // }, window.duration );
+    // console.log(window.duration)
+    // var el = $("#hills");
+    // var position = el.position();
+    // console.log( "left: " + position.left + ", top: " + position.top );
+
+//     var rect = document.getElementById("hills").getBoundingClientRect();
+// console.log(rect.top, rect.right, rect.bottom, rect.left);
+
+$("#thesun").animate({ top: "+=320px" }, window.duration );
+$("#night").animate({ opacity: .4}, window.duration );
 
 
-    var optAddition = document.getElementById("optAddition");
-    var optSubtraction = document.getElementById("optSubtraction");
-    var optMultiplication = document.getElementById("optMultiplication");
-    var optDivision = document.getElementById("optDivision");
+var optAddition = document.getElementById("optAddition");
+var optSubtraction = document.getElementById("optSubtraction");
+var optMultiplication = document.getElementById("optMultiplication");
+var optDivision = document.getElementById("optDivision");
 
-    var ddlSkillLevel = document.getElementById("ddlSkillLevel");
-    var iSkillLevel = ddlSkillLevel.options[ddlSkillLevel.selectedIndex].value;
+var ddlSkillLevel = document.getElementById("ddlSkillLevel");
+var iSkillLevel = ddlSkillLevel.options[ddlSkillLevel.selectedIndex].value;
 
-    var fnCreateQuestion = null;
+var fnCreateQuestion = null;
 
-    if (optAddition.checked) { fnCreateQuestion = CreateAdditionQuestion; }
-    else if (optSubtraction.checked) { fnCreateQuestion = CreateSubtractionQuestion; }
-    else if (optMultiplication.checked) { fnCreateQuestion = CreateMultiplicationQuestion; }
-    else if (optDivision.checked) { fnCreateQuestion = CreateDivisionQuestion; }
+if (optAddition.checked) { fnCreateQuestion = CreateAdditionQuestion; }
+else if (optSubtraction.checked) { fnCreateQuestion = CreateSubtractionQuestion; }
+else if (optMultiplication.checked) { fnCreateQuestion = CreateMultiplicationQuestion; }
+else if (optDivision.checked) { fnCreateQuestion = CreateDivisionQuestion; }
 
-    var QuestionHolder = document.getElementById("QuestionHolder");
-    var sQHtml = "";
-    var iIndex;
+var QuestionHolder = document.getElementById("QuestionHolder");
+var sQHtml = "";
+var iIndex;
 
-    garrQuestions = [];
+garrQuestions = [];
 
 
         // Start the timer
@@ -95,13 +143,17 @@ function CreateNewTest()
 
             if (window.tally.length >= numReqCorrQues) { // if enough right
 
+
+
+
+
                 $( "#hills" ).animate({ right: "-=" + moveamount/2 }, 700, "linear");
-               $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
-               $('#aDiv *').prop('disabled', true);
+                $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
+                $('#aDiv *').prop('disabled', true);
 
                 $( "#mama" ).animate({ left: "+=" + 120 }, 2000, "linear", function () {
                     setTimeout(function() { 
-                        ShowResults("You Won!"); 
+                        ShowResults(true); 
                         $('#aDiv *').prop('disabled', false);
                     },3000);
                 });
@@ -110,18 +162,18 @@ function CreateNewTest()
 
             } else { // if enough right not met
 
-               $( "#hills" ).animate({ right: "-=" + moveamount/2 }, 700, "linear");
-               $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
-               $('#aDiv *').prop('disabled', true);
+             $( "#hills" ).animate({ right: "-=" + moveamount/2 }, 700, "linear");
+             $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear");
+             $('#aDiv *').prop('disabled', true);
 
-               $("#right").show().animate({opacity: 1.0}, 800).hide(0, function() {
+             $("#right").show().animate({opacity: 1.0}, 800).hide(0, function() {
                 // Animation complete.
                 $('#aDiv *').prop('disabled', false);
                 CreateNewTest();
             });
-           }
+         }
 
-           
+
 
 
             // $( "#baby" ).animate({ right: "+=" + moveamount }, 900, "linear", function () {
@@ -144,42 +196,61 @@ function CreateNewTest()
 }
 
 function ShowResults(cause){
-    GameTimer.resetCountdown();
-    
-    $.mobile.changePage( "#results-page", {
-      transition: "none",
-      reverse: false,
-      changeHash: false
-  });
-    $("#thesun").stop(true,true).css("top","-50px");
-    $("#baby").stop(true,true).css("right","20px");
-    $("#hills").stop(true,true).css("right","0");
-    $("#mama").stop(true,true).css("left","-200px");
-    $( "#resultsList" ).html("<span class=\"logothin\">"+ cause +"</span>");
-    // $("#night").css("opacity","0");
-        //$( "#AnswerHolder" ).html("");
-        //console.log($("#thesun").position());
-    }
 
-    function CreateAndSortAnswers(answer) {
-        var RealAnswer = answer;
-        var AllAnswers = [];
-        var aIndex;
-        var randomIndex = Random(0,4);
-        var btnString = "";
+    if (cause === true) {
+        window.level += 1;
+        $.mobile.changePage( "#won-page", {
+          transition: "none",
+          reverse: false,
+          changeHash: false
+      });
+        $( "#levelInfo" ).html("<p>Level " + window.level + "</p>");
+        $("#startNextLevel").html("Go to level "+ window.level);
+        newLevel();
+    } else {
 
-        
+      $.mobile.changePage( "#lost-page", {
+          transition: "none",
+          reverse: false,
+          changeHash: false
+      });
+      $( "#levelInfo" ).html("<p>Level " + window.level + "</p>");
+  }
 
-        for (aIndex = 0; AllAnswers.length < 4; aIndex++)
-        {
-            var NewRandomAnswer = Random(RealAnswer - 10,RealAnswer + 10);
-            
-            if (aIndex == randomIndex) {
-                btnString += "<button type=\"button\" value=\""+RealAnswer+"\" class=\"answerBtn\">"+RealAnswer+"</button>";
+  GameTimer.resetCountdown();
 
-                AllAnswers.push(RealAnswer);
-            }
-            else if (NewRandomAnswer < 0 || NewRandomAnswer == RealAnswer || $.inArray( NewRandomAnswer, AllAnswers ) !== -1){
+  
+  $("#thesun").stop(true,true).css("top","-50px");
+  $("#baby").stop(true,true).css("right","20px");
+  $("#hills").stop(true,true).css("right","0");
+  $("#mama").stop(true,true).css("left","-200px");
+
+    // $( "#resultsList" ).html("<span class=\"logothin\">"+ cause +"</span>");
+    //$( "#AnswerHolder" ).html("");
+
+    $("#night").stop(true,true).css("opacity","0");
+       // console.log($("#thesun").position());
+   };
+
+   function CreateAndSortAnswers(answer) {
+    var RealAnswer = answer;
+    var AllAnswers = [];
+    var aIndex;
+    var randomIndex = Random(0,4);
+    var btnString = "";
+
+
+
+    for (aIndex = 0; AllAnswers.length < 4; aIndex++)
+    {
+        var NewRandomAnswer = Random(RealAnswer - 10,RealAnswer + 10);
+
+        if (aIndex == randomIndex) {
+            btnString += "<button type=\"button\" value=\""+RealAnswer+"\" class=\"answerBtn\">"+RealAnswer+"</button>";
+
+            AllAnswers.push(RealAnswer);
+        }
+        else if (NewRandomAnswer < 0 || NewRandomAnswer == RealAnswer || $.inArray( NewRandomAnswer, AllAnswers ) !== -1){
                 //console.log(NewRandomAnswer);
             }
 
@@ -256,14 +327,35 @@ function ShowResults(cause){
     $('#startTest').on('click', function(event) {
       event.preventDefault(); 
       // $('#myTab a[href="#quiz"]').tab('show');
-      $.mobile.changePage( "#game-page", {
+
+      $.mobile.changePage( "#level-page", {
+          transition: "none",
+          reverse: false,
+          changeHash: false
+      });
+ 
+  });
+
+
+
+$(document).on('pagebeforeshow', '#level-page', function( event ) { 
+
+     setTimeout(function() { 
+
+        $.mobile.changePage( "#game-page", {
           transition: "flip",
           reverse: false,
           changeHash: false
       });
-      window.tally = [];
-      CreateNewTest();
-  });
+        window.tally = [];
+        CreateNewTest();
+
+    },3000);
+
+
+ } )
+
+
     $('#startTestAgain').on('click', function(event) {
       event.preventDefault(); 
       // $('#myTab a[href="#startScreen"]').tab('show');
@@ -321,7 +413,7 @@ function updateTimer() {
         if (currentTime == 0) {
             GameTimer.Timer.stop();
            // alert('Time\'s Up!');
-           ShowResults("Time\'s up!");
+           ShowResults(false);
            GameTimer.resetCountdown();
            return;
        }

@@ -80,6 +80,12 @@ border-bottom: none;
     font-size: .9em;
  }
 
+/*.bottom-anchor {
+  position:absolute;
+  margin-bottom: 20px;
+   bottom:0px;
+    width:100%!important;
+}*/
 
 
  .btn-cta{
@@ -89,6 +95,8 @@ border-bottom: none;
    border-radius: none!important;
    padding:15px;
    font-size:20px!important;
+ /*  width:100%!important;*/
+   margin:none;
 }
 .logo {
    font-size: 28px;
@@ -271,6 +279,13 @@ margin-left:-512px;
    z-index: 5;
    width:1024px;
 }*/
+
+.centered {
+    /*margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height:58px;*/
+}
 #hills {
    position:absolute;
    bottom:160px;
@@ -287,3 +302,19 @@ margin-left:-512px;
    padding:35px 0 20px 0;
 }
 
+#levelInfo > p{
+   font-size: 42px;
+   /*padding:22px 0 35px 0;*/
+   color:#fff;
+   /*text-shadow: 0 1px 0 #E0EED6;*/
+    font-family: 'novecento_widedemibold',helvetica,sans-serif;
+   text-shadow:none;
+   text-align: center;
+}
+.circlestroke {
+     border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    padding: 28px;
+    border: 6px solid #fff;
+    text-align: center;
+}

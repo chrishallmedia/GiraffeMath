@@ -17,7 +17,7 @@
 			<div class="logo"><span class="logothin">Giraffe</span><span class="logothick">Math</span></div>
 			<img id="landingPic" src="img/landing.png"/>
 			<p>Answer questions correctly to get the baby giraffe home before sunset!</p>
-			<a href="#options-page" class="btn-cta" data-corners="false" data-role="button">Play</a>
+			<a href="#options-page" class="btn-cta bottom-anchor" data-corners="false" data-role="button">Play</a>
 		</div><!-- /content -->
 
 	</div><!-- /page -->
@@ -55,31 +55,47 @@
 
 	</div><!-- /page -->
 
+<!-- Level Page -->
+	<div data-role="page" id="level-page">
+		<div class="centered" id="levelInfo"></div>
+
+	</div> <!-- /page -->
 	<!-- Game Page -->
 	<div data-role="page" id="game-page">
 
 		<div role="main" class="ui-content">
 
-			<!-- <div id="night"> </div> -->
+			<div id="night"> </div>
 		<img id="thesun" src="img/sun.png"/>
-        <img id="mama" src="img/mom.png"/>
-        <img id="baby" src="img/baby.png"/>
+        <img id="mama" src=""/>
+        <img id="baby" src=""/>
         <img id="hills" src="img/hills.png"/>
         <span id="countdown"></span>    
         <div id="QuestionHolder"></div>
-        <div id="right">good job!</div>
-        <div id="wrong">Try again!</div>
+        <div id="right">Right!</div>
+        <div id="wrong">Wrong</div>
 			
 		</div><!-- /content -->
 
 	</div><!-- /page -->
 
-	<!-- Results Page -->
-	<div data-role="page" id="results-page">
+	<!-- Won Page -->
+	<div data-role="page" id="won-page">
 
 		<div role="main" class="ui-content">
-			 <div id="resultsList"></div>
-			 <a href="#options-page" data-role="button" data-corners="false" id="startTestAgain">Start Again!</a>
+			 <!-- <div id="resultsList"></div> -->
+			 <a href="#level-page" data-role="button" data-corners="false" class="btn-cta centered" id="startNextLevel"></a>
+			
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	<!-- Won Page -->
+	<div data-role="page" id="lost-page">
+
+		<div role="main" class="ui-content">
+			 <!-- <div id="resultsList"></div> -->
+			 <a href="#level-page" data-role="button" data-corners="false" class="btn-cta centered" id="startTestAgain">Try Again</a>
 			
 		</div><!-- /content -->
 
