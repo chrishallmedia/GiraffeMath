@@ -56,6 +56,7 @@ border: 1px dashed #648978;
 font-family: 'novecento_widelight'!important;
 }
 
+
 .ui-field-contain {
 border-bottom: none;
 }
@@ -69,7 +70,10 @@ border-bottom: none;
 .ui-controlgroup-vertical {
   font-family: 'novecento_widelight',helvetica,sans-serif!important;
   font-size:.6em;
+
 }
+
+
    .ui-btn-icon-left {
       padding-left: 1em;
    }
@@ -98,6 +102,11 @@ border-bottom: none;
  /*  width:100%!important;*/
    margin:none;
 }
+
+ .btn-cta:active{
+  background:#547968!important;
+ }
+
 .logo {
    font-size: 28px;
    padding:22px 0 35px 0;
@@ -124,7 +133,21 @@ border-bottom: none;
    background-color: rgba(255, 255, 2555, 0.3);
    border: 1px dashed #648978;
    text-align: center;
+
 }
+
+.ui-page-theme-a .ui-btn:hover{
+
+}
+
+.ui-controlgroup-controls {
+  padding-bottom: 60px;
+}
+
+.ui-controlgroup-controls {
+  padding-bottom: 60px;
+}
+
 
 .ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after {
    display: none;
@@ -310,6 +333,11 @@ margin-left:-512px;
     font-family: 'novecento_widedemibold',helvetica,sans-serif;
    text-shadow:none;
    text-align: center;
+   margin-top:200px;
+}
+#startNextLevel, #startTestAgain {
+  margin-top:200px;
+
 }
 .circlestroke {
      border-radius: 50%;
